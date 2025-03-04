@@ -1,8 +1,15 @@
 import React from 'react'
 import {assets} from '../assets/assets'
 
+import { useTranslation } from 'react-i18next';
+
+
 
 const Hero = () => {
+
+  const { t } = useTranslation();
+
+
   return (
     <div className='flex flex-col sm:flex-row border border-gray-400'>
         {/* Hero Left Side */}
@@ -10,11 +17,11 @@ const Hero = () => {
             <div className='text-[#414141]'>
                 <div className='flex items-center gap-2'>
                     <p className='w-8 md:w-11 h-[2px] bg-[#414141]'></p>
-                    <p className='front-medium text-sm md:text-base' >BEST SELLER</p>
+                    <p className='front-medium text-sm md:text-base' >{t('takeALookAt')}</p>
                 </div>
-                <h1 className='prata-regular text-3xl sm:py-3 lg:text-5xl leading-relaxed' >latest arrivals</h1>
+                <h1 className='prata-regular text-3xl sm:py-3 lg:text-5xl leading-relaxed' >{t('theLatest')}</h1>
                 <div className='flex items-center gap-2'>
-                  <p className='font-semibold text-sm md:text-base'>SHOP NOW</p>
+                  <p className='font-semibold text-sm md:text-base'>{t('jets')}</p>
                   <p className='w-8 md:w-11 h-[1px] bg-[#414141]'></p>
                 </div>
             </div>

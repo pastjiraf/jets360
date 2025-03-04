@@ -3,7 +3,12 @@ import {assets} from '../assets/assets'
 import {Link, NavLink} from 'react-router-dom'
 import { ShopContext } from '../context/ShopContext';
 
+import { useTranslation } from 'react-i18next';
+
+
 const Navbar = () => {
+
+    const { t } = useTranslation();
 
     const [visible, setVisible] = useState(false);
 
@@ -24,19 +29,19 @@ const Navbar = () => {
         <ul className='hidden sm:flex gap-5 text-sm text-gray-700'>
 
             <NavLink to='/' className='flex flex-col items-center gap-1'>
-                <p>HOME</p>
+                <p>{t('home')}</p>
                 <hr className='w-2/4 border-none h-[1.5px] bg-gray-700 hidden' />
             </NavLink>
             <NavLink to='/collection' className='flex flex-col items-center gap-1'>
-                <p>COLLECTION</p>
+                <p>{t('collections')}</p>
                 <hr className='w-2/4 border-none h-[1.5px] bg-gray-700 hidden' />
             </NavLink>
             <NavLink to='/about' className='flex flex-col items-center gap-1'>
-                <p>ABOUT</p>
+                <p>{t('aboutUs')}</p>
                 <hr className='w-2/4 border-none h-[1.5px] bg-gray-700 hidden' />
             </NavLink>
             <NavLink to='/contact' className='flex flex-col items-center gap-1'>
-                <p>CONTACT</p>
+                <p>{t('contact')}</p>
                 <hr className='w-2/4 border-none h-[1.5px] bg-gray-700 hidden' />
             </NavLink>
 
@@ -51,9 +56,10 @@ const Navbar = () => {
                 {token && 
                 <div className='group-hover:block hidden absolute dropdown-menu right-0 pt-4'>
                     <div className='flex flex-col gap-2 w-36 py-3 px-5 bg-slate-100 text-gray-500 rounded'>
-                        <p className='cursor-pointer hover:text-black'>My Profile</p>
-                        <p onClick={() => navigate('/orders')} className='cursor-pointer hover:text-black'>Orders</p>
-                        <p onClick={logout} className='cursor-pointer hover:text-black'>Logout</p>
+                        {/* My profile button */}
+                        <p className='cursor-pointer hover:text-black'>{t('myProfile')}</p>
+                        <p onClick={() => navigate('/orders')} className='cursor-pointer hover:text-black'>{t('orders')}</p>
+                        <p onClick={logout} className='cursor-pointer hover:text-black'>{t('logout')}</p>
                     </div>
                 </div>}
             </div>
@@ -72,10 +78,10 @@ const Navbar = () => {
                     <img className='h-4 rotate-180' src={assets.dropdown_icon} alt="" />
                     <p>Back</p>
                 </div>
-                <NavLink onClick={()=>setVisible(false)} className='py-2 pl-6 border' to='/'>HOME</NavLink>
-                <NavLink onClick={()=>setVisible(false)} className='py-2 pl-6 border' to='/collection'>COLLECTION</NavLink>
-                <NavLink onClick={()=>setVisible(false)} className='py-2 pl-6 border' to='/about'>ABOUT</NavLink>
-                <NavLink onClick={()=>setVisible(false)} className='py-2 pl-6 border' to='/contact'>CONTACT</NavLink>
+                <NavLink onClick={()=>setVisible(false)} className='py-2 pl-6 border' to='/'>{t('homeCaps')}</NavLink>
+                <NavLink onClick={()=>setVisible(false)} className='py-2 pl-6 border' to='/collection'>{t('collectionsCaps')}</NavLink>
+                <NavLink onClick={()=>setVisible(false)} className='py-2 pl-6 border' to='/about'>{t('aboutCaps')}</NavLink>
+                <NavLink onClick={()=>setVisible(false)} className='py-2 pl-6 border' to='/contact'>{t('contactCaps')}</NavLink>
             </div>
         </div>
 

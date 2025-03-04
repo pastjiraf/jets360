@@ -1,0 +1,11 @@
+{
+  "dependencies": {
+    "bcryptjs": "^3.0.2",
+    "express": "^4.21.2",
+    "i18next": "^24.2.2",
+    "jsonwebtoken": "^9.0.2",
+    "quill-better-table": "^1.2.10",
+    "react-i18next": "^15.4.0",
+    "react-quill": "^2.0.0"
+  }
+}

@@ -10,7 +10,7 @@ const Product = () => {
   const {products, currency, addToCart} = useContext(ShopContext);
   const [productData, setProductData] = useState(false);
   const [image, setImage] = useState('');
-  const [size, setSize] = useState('');
+  const [size, setSize] = useState('remove');
   
 
   const fetchProductData = async () => {
@@ -53,36 +53,43 @@ const Product = () => {
           {/* ----------- Product Info ------------ */}
           <div className='flex-1' >
             <h1 className='font-medium text-2xl mt-2' >{productData.name}</h1>
-            <div className='flex item-center gap-1 mt-2' >
+
+            {/* Static Reviews */}
+            {/* <div className='flex item-center gap-1 mt-2' >
               <img src={assets.star_icon} alt="" className="w-5 h-5" />
               <img src={assets.star_icon} alt="" className="w-5 h-5" />
               <img src={assets.star_icon} alt="" className="w-5 h-5" />
               <img src={assets.star_icon} alt="" className="w-5 h-5" />
               <img src={assets.star_icon} alt="" className="w-5 h-5" />
               <p className='pl-2' >(122)</p>
-            </div>
+            </div> */}
             <p className='mt-5 text-3xl font-medium'>{currency}{productData.price}</p>
-            <p className='mt-5 text-gray-500 md:w-4/5' >{productData.description}</p>
-            <div className='flex flex-column gap-4 my-8' >
+            <div className="product-description" dangerouslySetInnerHTML={{ __html: productData.description }} />
+            
+            {/* Old descriptioin display: no rich text */}
+            {/* <p className='mt-5 text-gray-500 md:w-4/5' >{productData.description}</p> */}
+            
+            {/* Select size */}
+            {/* <div className='flex flex-column gap-4 my-8' >
               <p>Select Size</p>
               <div className='flex gap-2' >
                 {productData.sizes.map((item,index)=>(
                   <button onClick={()=>setSize(item)} className={`border py-2 px-4 bg-gray-100 ${item === size ? 'border-orange-500' : ''}`} key={index}>{item}</button>
                 ))}
               </div>
-            </div>
+            </div> */}
             <button onClick={()=>addToCart(productData._id,size)} className='bg-black text-white px-8 py-3 text-sm active:bg-gray-700'>ADD TO CART</button>
             <hr className='mt-8 sm:w-4/5' />
             <div className='text-sm text-gray-500 mt-5 flex flex-col gap-1'>
-              <p>100% original product</p>
-              <p>Cash on delivery available</p>
-              <p>Easy return and exchane policy within 7 days.</p>
+              <p>1. static </p>
+              <p>2. static </p>
+              <p>3. static </p>
             </div>
           </div>
         </div>
 
       {/* ---------------- Description & Reiew Section ----------------- */}
-      <div className='mt-20' >
+      {/* <div className='mt-20' >
         <div className='flex' >
           <b className='border px-5 py-3 text-sm'>Description</b>
           <p className='border px-5 py-4 text-sm'>Reviews (122)</p>
@@ -91,7 +98,7 @@ const Product = () => {
           <p>Dummy text</p>
           <p>Some other text</p>
         </div>
-      </div>
+      </div> */}
 
       {/* -------------- Display Related Products ----------- */}
       <RelatedProducts category={productData.category} subCategory={productData.subCategory}/>

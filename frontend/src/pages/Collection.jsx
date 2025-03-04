@@ -4,7 +4,13 @@ import { assets } from '../assets/assets';
 import Title from '../components/Title';
 import ProductItem from '../components/ProductItem';
 
+import { useTranslation } from 'react-i18next';
+
+
 const Collection = () => {
+
+  const { t } = useTranslation();
+
 
   const { products, search, showSearch } = useContext(ShopContext);
   const [showFilter,setShowFilter] = useState(false);
@@ -85,38 +91,41 @@ const Collection = () => {
 
       {/* Filter Options */}
       <div className='min-w-60' >
-        <p onClick={() => setShowFilter(!showFilter)} className='my-2 text-xl flex items-center cursor-pointer gap-2' >FILTERS
+        <p onClick={() => setShowFilter(!showFilter)} className='my-2 text-xl flex items-center cursor-pointer gap-2' >{t('filtersCaps')}
           <img className={`h-3 sm:hidden ${showFilter ? 'rotate-90' : ''}`} src={assets.dropdown_icon} alt="" />
         </p>
         
         {/* Category filter */}
         <div className={`border border-gray-300 pl-5 py-3 mt-6 ${showFilter ? '' : 'hidden'} sm:block`}>
-          <p className='mb-3 text-sm font-medium'>CATEGORIES</p>
+          <p className='mb-3 text-sm font-medium'>{t('manufacturer')}</p>
           <div className='flex flex-col gap-2 text-sm font-light text-gray-700'>
             <p className='flex gap-2'>
-              <input className='w-3' type="checkbox" value={'Men'} onChange={toggleCategory}/> Men
+              <input className='w-3' type="checkbox" value={'Airbus'} onChange={toggleCategory}/>Airbus
             </p>
             <p className='flex gap-2'>
-              <input className='w-3' type="checkbox" value={'Women'} onChange={toggleCategory}/> Women
+              <input className='w-3' type="checkbox" value={'Bombardier'} onChange={toggleCategory}/>Bombardier
             </p>
             <p className='flex gap-2'>
-              <input className='w-3' type="checkbox" value={'Children'} onChange={toggleCategory}/> Children
+              <input className='w-3' type="checkbox" value={'Embraer'} onChange={toggleCategory}/>Embraer
+            </p>
+            <p className='flex gap-2'>
+              <input className='w-3' type="checkbox" value={'Gulfstream'} onChange={toggleCategory}/>Gulfstream
             </p>
           </div>
         </div>
 
         {/* Subcategory Filter */}
         <div className={`border border-gray-300 pl-5 py-3 my-5 ${showFilter ? '' : 'hidden'} sm:block`}>
-          <p className='mb-3 text-sm font-medium'>TYPE</p>
+          <p className='mb-3 text-sm font-medium'>{t('seats')}</p>
           <div className='flex flex-col gap-2 text-sm font-light text-gray-700'>
             <p className='flex gap-2'>
-              <input className='w-3' type="checkbox" value={'Topwear'} onChange={toggleSubCategory}/> Topwear
+              <input className='w-3' type="checkbox" value={'1-10'} onChange={toggleSubCategory}/>1-10
             </p>
             <p className='flex gap-2'>
-              <input className='w-3' type="checkbox" value={'Bottomwear'} onChange={toggleSubCategory}/> Bottomwear
+              <input className='w-3' type="checkbox" value={'11-20'} onChange={toggleSubCategory}/>11-20
             </p>
             <p className='flex gap-2'>
-              <input className='w-3' type="checkbox" value={'Winterwear'} onChange={toggleSubCategory}/> Winterwear
+              <input className='w-3' type="checkbox" value={'21-30'} onChange={toggleSubCategory}/>21-30
             </p>
           </div>
         </div>
@@ -127,12 +136,12 @@ const Collection = () => {
       <div className='flex-1'>
 
         <div className='flex justify-between text-base sm:text-2xl mb-4'>
-          <Title text1={'ALL'} text2={'COLLECTIONS'} />
+          <Title text1={t('allCaps')} text2={t('manufacturersCaps')} />
           {/* Product sort */}
           <select onChange={(e)=>setSortType(e.target.value)} className='border-2 border-gray-300 text-sm px-2' >
-            <option value="relevant">Sort by: Relevant</option>
-            <option value="low-high">Sort by: Low to High</option>
-            <option value="high-low">Sort by: High to low</option>
+            <option value="relevant">{t('sortByRelevance')}</option>
+            <option value="low-high">{t('sortByPriceLowHigh')}</option>
+            <option value="high-low">{t('sortByPriceHighLow')}</option>
           </select>
         </div>
 

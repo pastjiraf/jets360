@@ -1,0 +1,38 @@
+Product desccription like this:
+    https://www.thejetbusiness.com/jets/1025_2007_Embraer_Legacy_600.html
+
+REWORK:
+    order details (size, )
+
+NEW PAGES:
+ - EDIT ACCOUNT
+
+COPY: 
+ - rewrite:
+
+HOST: Vercel - waiting email from support
+
+
+Translate: i18n 
+- About US
+
+Not finished:
+
+Done:
+- pages:
+    - Cart  
+    - Collection
+    - Login
+    - Orders.
+
+
+
+- components:
+    - NewsletterBox
+    - Footer
+    - Hero
+    - BestSeller
+    - CartTotal
+    - LatestCollection
+    - Navbar
+    - RelatedProducts

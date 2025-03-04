@@ -3,7 +3,13 @@ import { ShopContext } from '../context/ShopContext'
 import Title from './Title';
 import ProductItem from './ProductItem'
 
+import { useTranslation } from 'react-i18next';
+
+
 const BestSeller = () => {
+
+    const { t } = useTranslation();
+    
 
     const {products} = useContext(ShopContext);
     const [bestSeller,setBestSeller] = useState([]);
@@ -16,9 +22,9 @@ const BestSeller = () => {
   return (
     <div className='my-10'>
         <div className='text-center text-3xl py-8'>
-            <Title text1={'BEST'} text2={'SELLERS'} />
+            <Title text1={t('best')} text2={t('sellers')} />
             <p className='w-3/4 m-auto text-xs sm:text-sm md:text-base text-gray-600'>
-                Call us to get a quote.
+                {t('freeQuote')}
             </p>
         </div>
 

@@ -30,3 +30,26 @@ a.active hr{
   }
 
   
+
+  /* Rich text Description */
+
+  .product-description {
+    /* Reset margins, paddings, and list styles */
+    margin: 0;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding: 0;
+    /* Optionally, use a reset on common elements */
+  }
+  
+  .product-description ul,
+  .product-description ol {
+    list-style: initial; /* Or 'disc' for ul, 'decimal' for ol */
+    margin-left: 1.5em;
+    padding-left: 1.5em;
+  }
+  
+  .product-description p {
+    margin: 1em 0;
+  }
+  

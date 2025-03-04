@@ -5,7 +5,13 @@ import { backendUrl, currency } from "../App";
 import { toast } from "react-toastify";
 import { assets } from "../assets/assets";
 
+import { useTranslation } from 'react-i18next';
+
+
 const Orders = ({ token }) => {
+
+  const { t } = useTranslation();
+  
   console.log();
 
   const [orders, setOrders] = useState([]);
@@ -53,7 +59,7 @@ const Orders = ({ token }) => {
 
   return (
     <div>
-      <h3>Order Page</h3>
+      <h3>{t('orders')}</h3>
       <div>
         {orders.map((order, index) => (
           <div
@@ -101,22 +107,22 @@ const Orders = ({ token }) => {
             </div>
             <div>
               <p className="text-sm sm:text-[15px]">
-                Items : {order.items.length}
+                {t('items')} : {order.items.length}
               </p>
-              <p className="mt-3">Method : {order.paymentMethod}</p>
-              <p>Payment : {order.payment ? "Done" : "Pending"}</p>
-              <p>Date : {new Date(order.date).toLocaleDateString()}</p>
+              <p className="mt-3">{t('method')} : {t(order.paymentMethod)}</p>
+              <p>{t('Payment')} : {order.payment ? t('Done') : t('Pending')}</p>
+              <p>{t('Date')} : {new Date(order.date).toLocaleDateString()}</p>
             </div>
             <p className="text-sm sm:text-[15px]">
               {currency}
               {order.amount}
             </p>
             <select onChange={(event)=>statusHandler(event,order._id)} value={order.status} className="p-2 font-semibold">
-              <option value="Order Placed">Order Placed</option>
-              <option value="Packing">Packing</option>
-              <option value="Shipped">Shipped</option>
-              <option value="Out for delivery">Out for delivery</option>
-              <option value="Delivered">Delivered</option>
+              <option value="Order Placed">{t('Order Placed')}</option>
+              <option value="Packing">{t('Packing')}</option>
+              <option value="Shipped">{t('Shipped')}</option>
+              <option value="Out for delivery">{t('Out for delivery')}</option>
+              <option value="Delivered">{t('Delivered')}</option>
             </select>
           </div>
         ))}
