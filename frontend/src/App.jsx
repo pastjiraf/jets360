@@ -18,8 +18,11 @@ import OrderDetail from './pages/OrderDetail'
 import AccountManagement from './pages/AccountManagement'
 import ProtectedRoute from './components/ProtectedRoute';
 
+import LanguageSelector from './components/LanguageSelector.jsx'; // Import here first
 
 import './utils/i18n'
+
+import ResetPassword from './pages/ResetPassword' // Adjust path if in components folder
 
 function App() {
   return (
@@ -35,6 +38,12 @@ function App() {
         <Route path='/product/:productId' element={<Product />} />
         <Route path='/cart' element={<Cart />} />
         <Route path='/login' element={<Login />} />
+
+
+        {/* Reset password */}
+        <Route path="/reset-password/:token" element={<ResetPassword />} />
+        
+        
         <Route path='/place-order' element={<PlaceOrder />} />
         <Route path='/orders' element={<Orders />} />
         <Route path="/order-detail" element={<OrderDetail />} />

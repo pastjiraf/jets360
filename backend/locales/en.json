@@ -1,0 +1,9 @@
+{
+    "authReset": {
+      "subject": "Password Reset Request",
+      "message": "You requested a password reset. Click this link to reset your password: [resetUrl]\n\nIf you didn’t request this, ignore this email.",
+      "success": "Password reset email sent",
+      "userNotFound": "User not found",
+      "error": "Server error"
+    }
+  }

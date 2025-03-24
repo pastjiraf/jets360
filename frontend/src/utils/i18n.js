@@ -32,8 +32,8 @@ i18n
           getInTouch: "GET IN TOUCH",
           copyright: "Copyright 2025@ jets360.com - All Right Reserved",
           bestSellerCaps: "BEST SELLER",
-          best: "BEST",
-          sellers: "SELLER",
+          best: "MOST",
+          sellers: "POPULAR",
           latestArrivals: "latest arrivals",
           shopNow: "SHOP NOW",
           freeQuote: "Call for a free quote.",
@@ -82,6 +82,7 @@ i18n
           careersParagraph: "Learn more about our team and available jobs.",
           exploreJobs: "Explore Jobs",
 
+          // Login.jsx
           'Sign Up': "Sign Up",
           'Login': "Login",
           name: 'Name',
@@ -90,6 +91,8 @@ i18n
           forgottenPassword: "Forgot your password?",
           createAccount: "Create an account",
           loginHere: "Login Here",
+          checkEmailSuccess: "Check your email for a reset link",
+          emailError: "An error occurred. Please try again.",
 
           Quantity: "Quantity",
           Size: "Size",
@@ -146,7 +149,48 @@ i18n
           //Hero.jsx
           takeALookAt: "Take a look at",
           theLatest: "THE LATEST",
-          jets: "Jets"
+          jets: "Jets",
+
+
+
+          // AccountManagement.jsx
+          "myAccount": "My Account",
+          "username": "Username",
+          "email": "Email",
+          "changeEmail": "Change Email",
+          "currentPassword": "Current Password",
+          "newEmail": "New Email",
+          "updateEmail": "Update Email",
+          "changePassword": "Change Password",
+          "newPassword": "New Password",
+          "confirmNewPassword": "Confirm New Password",
+          "updatePassword": "Update Password",
+          "fillAllFieldsEmail": "Please fill in all fields for email update.",
+          "fillAllFieldsPassword": "Please fill in all fields for password update.",
+          "passwordsDoNotMatch": "New passwords do not match.",
+          "errorFetchingProfile": "Error fetching profile",
+          "errorUpdatingEmail": "Error updating email",
+          "errorUpdatingPassword": "Error updating password",
+
+          // ContactForm.jsx
+          "contact_us": "Contact Us",
+          "name": "Name",
+          "email": "Email",
+          "phone": "Phone Number",
+          "message": "Message",
+          "send": "Send",
+          "email_sent_success": "Email sent successfully!",
+          "error_sending_email": "Error sending email.",
+
+          // OfferButton.jsx
+          "free_offer": "Free Offer",
+          "hide_form": "Hide form",
+
+          // Product.jsx
+          "addToCart": "ADD TO CART",
+          "priceDetail": "The price is for a decorative replica at 1/200 scale.",
+          "freeQuote": "Contact us for a free quote."
+          
 
         },
       },
@@ -173,7 +217,7 @@ i18n
           copyright: "Copyright 2025@ jets360.com - Всички права запазени",
           bestSellerCaps: "НАЙ-ПРОДАВАНИ",
           best: "НАЙ-",
-          sellers: "ПРОДАВАНИ",
+          sellers: "ПОПУЛЯРНИ",
           latestArrivals: "Най-нови придобивки",
           shopNow: "КУПИ СЕГА",
           freeQuote: "Обадете се за безплатна оферта",
@@ -183,7 +227,7 @@ i18n
           shippingFee: "Доставка",
           totalAmmount: "Общо за плащане",
           latest: "Последни",
-          collections: "Колекции",
+          collections: "Придобивки",
           collectionsCaps: "КОЛЕКЦИИ",
           aircraftForYou: "Самолет, който ще ви служи.",
           contact: "Контакти",
@@ -222,6 +266,7 @@ i18n
           careersParagraph: "Вижте повече за екипа и свободни места за работа.",
           exploreJobs: "Разгледайте Работните Места",
 
+          // Login.jsx
           'Sign Up': "Регистрация",
           'Login': "Вход",
           name: "Име",
@@ -230,6 +275,8 @@ i18n
           forgottenPassword: "Забравена парола?",
           createAccount: "Създайте акаунт",
           loginHere: "Влезте в акаунта си",
+          checkEmailSuccess: "Проверете имейла си за линк за възстановяване на паролата",
+          emailError: "Възникна грешка. Моля, опитайте отново.",
 
           Quantity: "Брой",
           Size: "Размер",
@@ -286,8 +333,47 @@ i18n
           //Hero.jsx
           takeALookAt: "Разгледайте",
           theLatest: "НАЙ-НОВИТЕ",
-          jets: "Самолети"
+          jets: "Самолети",
 
+
+          // AccountManagement.jsx
+          "myAccount": "Моят Акаунт",
+          "username": "Потребителско Име",
+          "email": "Имейл",
+          "changeEmail": "Промяна на Имейл",
+          "currentPassword": "Текуща Парола",
+          "newEmail": "Нов Имейл",
+          "updateEmail": "Актуализирай Имейл",
+          "changePassword": "Промяна на Парола",
+          "newPassword": "Нова Парола",
+          "confirmNewPassword": "Потвърди Нова Парола",
+          "updatePassword": "Актуализирай Парола",
+          "fillAllFieldsEmail": "Моля, попълнете всички полета за актуализация на имейла.",
+          "fillAllFieldsPassword": "Моля, попълнете всички полета за актуализация на паролата.",
+          "passwordsDoNotMatch": "Новите пароли не съвпадат.",
+          "errorFetchingProfile": "Грешка при извличане на профила",
+          "errorUpdatingEmail": "Грешка при актуализация на имейла",
+          "errorUpdatingPassword": "Грешка при актуализация на паролата",
+
+
+          // ContactForm.jsx
+          "contact_us": "Свържете се с нас",
+          "name": "Име",
+          "email": "Имейл",
+          "phone": "Телефонен номер",
+          "message": "Съобщение",
+          "send": "Изпрати",
+          "email_sent_success": "Имейлът е изпратен успешно!",
+          "error_sending_email": "Грешка при изпращане на имейл.",
+
+          // OfferButton.jsx
+          "free_offer": "Безплатна оферта",
+          "hide_form": "Скриване на формуляра",
+
+          // Product.jsx
+          "priceDetail": "Цената е за декоративна реплика с мащаб 1/200.",
+          "freeQuote": "Свържете се с нас за безплатна оферта.",
+          "addToCart": "Добавяне в количката",
 
         },
       },

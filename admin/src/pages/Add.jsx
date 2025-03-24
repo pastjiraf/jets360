@@ -8,9 +8,8 @@ import { useTranslation } from 'react-i18next';
 import ReactQuill, { Quill } from 'react-quill';
 import TableModule from 'quill-better-table';
 import 'quill-better-table/dist/quill-better-table.css';
-import 'react-quill/dist/quill.snow.css'; // Import styles
+import 'react-quill/dist/quill.snow.css';
 
-// Register the module with Quill
 Quill.register('modules/better-table', TableModule, true);
 
 
@@ -35,7 +34,6 @@ const Add = ({ token }) => {
     e.preventDefault();
 
     try {
-
       const formData = new FormData();
 
       formData.append('name', name)
@@ -111,9 +109,6 @@ const Add = ({ token }) => {
           onChange={setDescription}
           className='w-full max-w-[500px]'
         />
-
-
-        {/* <textarea onChange={(e) => setDescription(e.target.value)} value={description} className='w-full max-w-[500px] px-3 py-2' type="text" placeholder={t('description')} required /> */}
       </div>
 
       <div className='flex flex-col sm:flex-row gap-2 w-full sm:gap-8'>

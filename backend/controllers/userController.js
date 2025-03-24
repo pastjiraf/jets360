@@ -2,6 +2,9 @@ import validator from "validator";
 import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
 import userModel from '../models/userModel.js';
+import crypto from 'crypto'; // secure token generation
+import nodemailer from 'nodemailer';
+import i18n from '../i18n.js'
 
 
 const createToken = (id) => {
@@ -18,7 +21,7 @@ const loginUser = async (req, res) => {
         const user = await userModel.findOne({ email });
 
         if (!user) {
-            return res.json({ success: false, message: "User does not exist" })
+            return res.status(404).json({ success: false, message: "User does not exist" })
         }
 
         const isMatch = await bcrypt.compare(password, user.password)
@@ -29,12 +32,12 @@ const loginUser = async (req, res) => {
             res.json({ success: true, token })
         }
         else {
-            res.json({ success: false, message: 'Invalid credentials' })
+            res.status(400).json({ success: false, message: 'Invalid credentials' })
         }
 
     } catch (error) {
         console.log(error)
-        res.json({ success: false, message: error.message })
+        res.status(500).json({ success: false, message: error.message })
     }
 }
 
@@ -46,15 +49,15 @@ const registerUser = async (req, res) => {
         // check if user already exists
         const exists = await userModel.findOne({ email });
         if (exists) {
-            return res.json({ success: false, message: "User already exists" })
+            return res.status(400).json({ success: false, message: "User already exists" })
         }
 
         // validating email & password
         if (!validator.isEmail(email)) {
-            return res.json({ success: false, message: "Please enter a valid email" })
+            return res.status(400).json({ success: false, message: "Please enter a valid email" })
         }
         if (password.length < 8) {
-            return res.json({ success: false, message: "Your password must be more than 8 characters" })
+            return res.status(400).json({ success: false, message: "Your password must be more than 8 characters" })
         }
 
         // hashin user password
@@ -75,7 +78,7 @@ const registerUser = async (req, res) => {
 
     } catch (error) {
         console.log(error)
-        res.json({ success: false, message: error.message })
+        res.status(500).json({ success: false, message: error.message })
     }
 
 }
@@ -90,7 +93,7 @@ const adminLogin = async (req, res) => {
             const token = jwt.sign(email + password, process.env.JWT_SECRET);
             res.json({ success: true, token })
         } else {
-            res.json({ success: false, message: "Invalid admin credentials" })
+            res.status(500).json({ success: false, message: "Invalid admin credentials" })
         }
 
     } catch (error) {
@@ -99,54 +102,239 @@ const adminLogin = async (req, res) => {
 
 }
 
-
-// Route for user logout
-
-
-// Edit user data endpoint// Update Email
-export const updateEmail = async (req, res) => {
+//#region - update user data
+// Update Email
+const updateEmail = async (req, res) => {
     const { currentPassword, newEmail } = req.body;
+    const userId = req.body.userId; // Set by authUser middleware
     try {
-        const user = await userModel.findById(req.userId);
+        const user = await userModel.findById(userId);
         if (!user) {
-            return res.status(404).json({ success: false, message: 'User not found.' });
+            return res.status(404).json({ success: false, message: 'User not found' });
         }
         const isMatch = await bcrypt.compare(currentPassword, user.password);
         if (!isMatch) {
-            return res.status(400).json({ success: false, message: 'Incorrect current password.' });
+            return res.status(400).json({ success: false, message: 'Incorrect current password' });
         }
         user.email = newEmail;
         await user.save();
-        res.json({ success: true, message: 'Email updated successfully.' });
+        res.json({ success: true, message: 'Email updated successfully' });
     } catch (error) {
         console.error(error);
-        res.status(500).json({ success: false, message: 'Server error. Please try again later.' });
+        res.status(500).json({ success: false, message: 'Server error' });
     }
 };
 
 // Update Password
-export const updatePassword = async (req, res) => {
+const updatePassword = async (req, res) => {
     const { currentPassword, newPassword } = req.body;
+    const userId = req.body.userId; // Set by authUser middleware
     try {
-        const user = await userModel.findById(req.userId);
+        const user = await userModel.findById(userId);
         if (!user) {
-            return res.status(404).json({ success: false, message: 'User not found.' });
+            return res.status(404).json({ success: false, message: 'User not found' });
         }
         const isMatch = await bcrypt.compare(currentPassword, user.password);
         if (!isMatch) {
-            return res.status(400).json({ success: false, message: 'Incorrect current password.' });
+            return res.status(400).json({ success: false, message: 'Incorrect current password' });
         }
         const salt = await bcrypt.genSalt(10);
         user.password = await bcrypt.hash(newPassword, salt);
         await user.save();
-        res.json({ success: true, message: 'Password updated successfully.' });
+        res.json({ success: true, message: 'Password updated successfully' });
     } catch (error) {
         console.error(error);
-        res.status(500).json({ success: false, message: 'Server error. Please try again later.' });
+        res.status(500).json({ success: false, message: 'Server error' });
+    }
+};
+//#endregion
+
+
+//#region - get user data to display on accoung management page
+export const getProfile = async (req, res) => {
+    const userId = req.body.userId;
+    try {
+      const user = await userModel.findById(userId).select('name email');
+      if (!user) {
+        return res.status(404).json({ success: false, message: 'User not found' });
+      }
+      res.json({ success: true, user });
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ success: false, message: 'Server error' });
+    }
+  };
+//#endregion
+
+
+//#region - forgotten password
+const forgotPassword = async (req, res) => {
+    const { email, language } = req.body;
+
+    try {
+        // Find the user by email
+        const user = await userModel.findOne({ email });
+        if (!user) {
+            return res.status(404).json({ message: i18n.__('authReset.userNotFound') });
+        }
+
+        // Generate a reset token
+        const resetToken = crypto.randomBytes(20).toString('hex');
+        user.resetPasswordToken = resetToken;
+        user.resetPasswordExpires = Date.now() + 3600000; // 1 hour expiry
+        await user.save();
+
+        // Set up Nodemailer transporter
+        console.log('EMAIL_USER:', process.env.EMAIL_USER);
+        console.log('EMAIL_PASS:', process.env.EMAIL_PASS);
+        const transporter = nodemailer.createTransport({
+            service: 'Gmail',
+            auth: {
+                user: process.env.EMAIL_USER,
+                pass: process.env.EMAIL_PASS,
+            },
+        });
+
+        const userLocale = language || 'bg';
+        i18n.setLocale(userLocale);
+        const resetUrl = `${process.env.FRONTEND_URL}/reset-password/${resetToken}`; // Updated URL
+        const mailOptions = {
+            from: process.env.EMAIL_USER,
+            to: user.email,subject: i18n.__('authReset.subject'),
+            text: i18n.__('authReset.message').replace('[resetUrl]', resetUrl),
+        };
+
+        // Send email
+        await transporter.sendMail(mailOptions);
+        res.status(200).json({ message: i18n.__('authReset.success') });
+    } catch (error) {
+        console.error('Error in forgotPassword:', error);
+        res.status(500).json({ message: i18n.__('authReset.error') });
     }
 };
 
-export { loginUser, registerUser, adminLogin };
+
+const resetPassword = async (req, res) => {
+    const { token, password } = req.body;
+
+    try {
+        const user = await userModel.findOne({
+            resetPasswordToken: token,
+            resetPasswordExpires: { $gt: Date.now() },
+        });
+        if (!user) {
+            return res.status(400).json({ success: false, message: 'Invalid or expired token' });
+        }
+
+        const salt = await bcrypt.genSalt(10);
+        user.password = await bcrypt.hash(password, salt);
+        user.resetPasswordToken = undefined;
+        user.resetPasswordExpires = undefined;
+        await user.save();
+
+        res.json({ success: true, message: 'Password reset successfully' });
+    } catch (error) {
+        console.error('Error resetting password:', error);
+        res.status(500).json({ success: false, message: 'Server error' });
+    }
+};
+//#endregion
+
+export { loginUser, registerUser, adminLogin, updateEmail, updatePassword, forgotPassword, resetPassword };
+
+
+
+
+//#region OLD COMMENTS
+
+
 
 // Old export. Uncomment if needed.
 // export { loginUser, registerUser, adminLogin }
+
+
+// Old forgot password (grok says that only the comments are changed)
+// const forgotPassword = async (req, res) => {
+//     try {
+//       const { email } = req.body;
+//       const user = await userModel.findOne({ email });
+//       if (!user) {
+//         return res.json({ success: false, message: "User does not exist" });
+//       }
+
+//       const resetToken = crypto.randomBytes(32).toString('hex');
+//       const resetTokenExpiration = Date.now() + 3600000; // 1 hour expiration
+
+//       user.resetPasswordToken = resetToken;
+//       user.resetPasswordExpires = resetTokenExpiration;
+//       await user.save();
+
+//       const resetUrl = `http://yourfrontend.com/reset-password?token=${resetToken}`;
+//       const transporter = nodemailer.createTransport({
+//         service: 'gmail',
+//         auth: {
+//           user: process.env.EMAIL_USER,
+//           pass: process.env.EMAIL_PASS,
+//         },
+//       });
+
+//       const mailOptions = {
+//         from: process.env.EMAIL_USER,
+//         to: user.email,
+//         subject: 'Password Reset',
+//         text: `You requested a password reset. Click this link to reset your password: ${resetUrl}`,
+//       };
+
+//       await transporter.sendMail(mailOptions);
+//       res.json({ success: true, message: 'Reset link sent to email' });
+//     } catch (error) {
+//       console.log(error);
+//       res.json({ success: false, message: error.message });
+//     }
+//   };
+
+
+
+// const forgotPassword = async (req, res) => {
+//     const { email } = req.body;
+
+//     try {
+//       // Find the user by email
+//       const user = await userModel.findOne({ email });
+//       if (!user) {
+//         return res.status(404).json({ message: 'User not found' });
+//       }
+
+//       // Generate a reset token
+//       const resetToken = crypto.randomBytes(20).toString('hex');
+//       user.resetPasswordToken = resetToken;
+//       user.resetPasswordExpires = Date.now() + 3600000; // 1 hour expiry
+//       await user.save();
+
+//       // Set up Nodemailer transporter
+//       const transporter = nodemailer.createTransport({
+//         service: 'Gmail', // Use Gmail as the email service
+//         auth: {
+//           user: process.env.EMAIL_USER,
+//           pass: process.env.EMAIL_PASS,
+//         },
+//       });
+
+//       // Define the email content
+//       const resetUrl = `http://localhost:3000/reset-password/${resetToken}`; // Adjust URL to your frontend
+//       const mailOptions = {
+//         from: process.env.EMAIL_USER,
+//         to: user.email,
+//         subject: 'Password Reset Request',
+//         text: `You requested a password reset. Click this link to reset your password: ${resetUrl}\n\nIf you didn’t request this, ignore this email.`,
+//       };
+
+//       // Send the email
+//       await transporter.sendMail(mailOptions);
+//       res.status(200).json({ message: 'Password reset email sent' });
+//     } catch (error) {
+//       console.error('Error in forgotPassword:', error);
+//       res.status(500).json({ message: 'Server error' });
+//     }
+//   };
+//#endregion OLD COMMENTS

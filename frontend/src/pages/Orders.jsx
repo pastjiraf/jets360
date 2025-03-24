@@ -80,16 +80,6 @@ const Orders = () => {
                   <p className='min-w-2 h-2 rounded-full bg-green-500'></p>
                   <p className='text-sm md:text-base'>{t(item.status)}</p>
                 </div>
-
-                {/* Old button - not working */}
-                {/* <button className='border px-4 py-2 text-sm font-medium rounded-sm'>{t('trackOrder')}</button> */}
-
-                {/* When clicking, navigate to OrderDetail and pass the order item as state */}
-                {/* <NavLink to='/order-detail'
-                  className='border px-4 py-2 text-sm font-medium rounded-sm'
-                >
-                  {t('trackOrder')}
-                </NavLink> */}
                 <button
                   className='border px-4 py-2 text-sm font-medium rounded-sm'
                   onClick={() => navigate('/order-detail', { state: item })}

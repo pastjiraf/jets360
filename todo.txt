@@ -1,11 +1,13 @@
 Product desccription like this:
     https://www.thejetbusiness.com/jets/1025_2007_Embraer_Legacy_600.html
 
+Idea:
+ - contact form on product page. - new component
+
+
 REWORK:
-    order details (size, )
 
 NEW PAGES:
- - EDIT ACCOUNT
 
 COPY: 
  - rewrite:

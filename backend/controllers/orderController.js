@@ -63,7 +63,6 @@ const placeOrderStripe = async (req,res) => {
                 currency: currency,
                 product_data: {
                     name: item.name,
-                    // images: typeof item.image === 'string' ? [item.image] : [],  // ✅ Always an array of valid strings
                 },
                 unit_amount: item.price * 100, // price in cents
             },
@@ -115,11 +114,6 @@ const verifyStripe = async (req,res) => {
         console.log(error)
         res.json({success:false, message:error.message})
     }
-}
-
-// Placing orders using Razorpay 
-const placeOrderRazorpay = async (req,res) => {
-
 }
 
 // All orders data for Admin Panel
