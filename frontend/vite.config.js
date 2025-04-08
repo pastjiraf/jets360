@@ -5,7 +5,7 @@ export default defineConfig({
   plugins: [react()],
   server: {
     proxy: {
-      '/api': 'https://jets360-backend.vercel.app/'
+      '/api': 'https://jets360-backend.vercel.app'
     }
   }
 });
