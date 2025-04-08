@@ -33,7 +33,7 @@
 
 import nodemailer from 'nodemailer';
 
-export const sendEmail = async (req, res) => {
+export default async function sendEmail(req, res) {
   if (req.method !== 'POST') {
     return res.status(405).json({ message: 'Method Not Allowed' });
   }
@@ -65,6 +65,4 @@ export const sendEmail = async (req, res) => {
   } catch (error) {
     res.status(500).json({ message: 'Error sending email', error });
   }
-};
-
-export default sendEmail;
+}
