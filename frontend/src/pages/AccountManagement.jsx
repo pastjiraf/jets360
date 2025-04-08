@@ -90,20 +90,81 @@ const AccountManagement = () => {
   };
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap:'10px', alignItems: 'center', maxWidth: '400px', margin: '50px auto' }}>
-      <div style={{ display: 'flex', flexDirection: 'column', gap:'10px', marginBottom: '20px', textAlign: 'center' }}>
+    // <div style={{ display: 'flex', flexDirection: 'column', gap:'10px', alignItems: 'center', maxWidth: '400px', margin: '50px auto' }}>
+    //   <div style={{ display: 'flex', flexDirection: 'column', gap:'10px', marginBottom: '20px', textAlign: 'center' }}>
+    //     <p><strong>{t('username')}:</strong> {user.name}</p>
+    //     <p><strong>{t('email')}:</strong> {user.email}</p>
+    //   </div>
+
+    //   <form onSubmit={handleEmailChange} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: '100%', marginBottom: '20px' }}>
+    //     <h3 style={{ padding: '8px'}}>{t('changeEmail')}</h3>
+    //     <input
+    //       type="password"
+    //       placeholder={t('currentPassword')}
+    //       value={emailData.currentPassword}
+    //       onChange={(e) => setEmailData({ ...emailData, currentPassword: e.target.value })}
+    //       style={{ width: '100%', padding: '8px', marginBottom: '10px', textAlign: 'center' }}
+    //       required
+    //     />
+    //     <input
+    //       type="email"
+    //       placeholder={t('newEmail')}
+    //       value={emailData.newEmail}
+    //       onChange={(e) => setEmailData({ ...emailData, newEmail: e.target.value })}
+    //       style={{ width: '100%', padding: '8px', marginBottom: '10px', textAlign: 'center' }}
+    //       required
+    //     />
+    //     <button type="submit" style={{ padding: '10px 20px', background: '#000', color: '#fff' }}>
+    //       {t('updateEmail')}
+    //     </button>
+    //   </form>
+
+    //   <form onSubmit={handlePasswordChange} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: '100%' }}>
+    //     <h3 style={{ padding: '8px'}}>{t('changePassword')}</h3>
+    //     <input
+    //       type="password"
+    //       placeholder={t('currentPassword')}
+    //       value={passwordData.currentPassword}
+    //       onChange={(e) => setPasswordData({ ...passwordData, currentPassword: e.target.value })}
+    //       style={{ width: '100%', padding: '8px', marginBottom: '10px', textAlign: 'center' }}
+    //       required
+    //     />
+    //     <input
+    //       type="password"
+    //       placeholder={t('newPassword')}
+    //       value={passwordData.newPassword}
+    //       onChange={(e) => setPasswordData({ ...passwordData, newPassword: e.target.value })}
+    //       style={{ width: '100%', padding: '8px', marginBottom: '10px', textAlign: 'center' }}
+    //       required
+    //     />
+    //     <input
+    //       type="password"
+    //       placeholder={t('confirmNewPassword')}
+    //       value={passwordData.confirmNewPassword}
+    //       onChange={(e) => setPasswordData({ ...passwordData, confirmNewPassword: e.target.value })}
+    //       style={{ width: '100%', padding: '8px', marginBottom: '10px', textAlign: 'center' }}
+    //       required
+    //     />
+    //     <button type="submit" style={{ padding: '10px 20px', background: '#000', color: '#fff' }}>
+    //       {t('updatePassword')}
+    //     </button>
+    //   </form>
+    // </div>
+
+    <div className="flex flex-col gap-2.5 items-center max-w-[400px] mx-auto mt-[50px]">
+      <div className="flex flex-col gap-2.5 mb-5 text-center">
         <p><strong>{t('username')}:</strong> {user.name}</p>
         <p><strong>{t('email')}:</strong> {user.email}</p>
       </div>
 
-      <form onSubmit={handleEmailChange} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: '100%', marginBottom: '20px' }}>
-        <h3 style={{ padding: '8px'}}>{t('changeEmail')}</h3>
+      <form onSubmit={handleEmailChange} className="flex flex-col items-center w-full mb-5">
+        <h3 className="p-2">{t('changeEmail')}</h3>
         <input
           type="password"
           placeholder={t('currentPassword')}
           value={emailData.currentPassword}
           onChange={(e) => setEmailData({ ...emailData, currentPassword: e.target.value })}
-          style={{ width: '100%', padding: '8px', marginBottom: '10px', textAlign: 'center' }}
+          className="w-full p-2 mb-2.5 text-center border border-gray-800"
           required
         />
         <input
@@ -111,22 +172,22 @@ const AccountManagement = () => {
           placeholder={t('newEmail')}
           value={emailData.newEmail}
           onChange={(e) => setEmailData({ ...emailData, newEmail: e.target.value })}
-          style={{ width: '100%', padding: '8px', marginBottom: '10px', textAlign: 'center' }}
+          className="w-full p-2 mb-2.5 text-center border border-gray-800"
           required
         />
-        <button type="submit" style={{ padding: '10px 20px', background: '#000', color: '#fff' }}>
+        <button type="submit" className="px-5 py-2.5 bg-black text-white ">
           {t('updateEmail')}
         </button>
       </form>
 
-      <form onSubmit={handlePasswordChange} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: '100%' }}>
-        <h3 style={{ padding: '8px'}}>{t('changePassword')}</h3>
+      <form onSubmit={handlePasswordChange} className="flex flex-col items-center w-full">
+        <h3 className="p-2">{t('changePassword')}</h3>
         <input
           type="password"
           placeholder={t('currentPassword')}
           value={passwordData.currentPassword}
           onChange={(e) => setPasswordData({ ...passwordData, currentPassword: e.target.value })}
-          style={{ width: '100%', padding: '8px', marginBottom: '10px', textAlign: 'center' }}
+          className="w-full p-2 mb-2.5 text-center border border-gray-800"
           required
         />
         <input
@@ -134,7 +195,7 @@ const AccountManagement = () => {
           placeholder={t('newPassword')}
           value={passwordData.newPassword}
           onChange={(e) => setPasswordData({ ...passwordData, newPassword: e.target.value })}
-          style={{ width: '100%', padding: '8px', marginBottom: '10px', textAlign: 'center' }}
+          className="w-full p-2 mb-2.5 text-center border border-gray-800"
           required
         />
         <input
@@ -142,10 +203,10 @@ const AccountManagement = () => {
           placeholder={t('confirmNewPassword')}
           value={passwordData.confirmNewPassword}
           onChange={(e) => setPasswordData({ ...passwordData, confirmNewPassword: e.target.value })}
-          style={{ width: '100%', padding: '8px', marginBottom: '10px', textAlign: 'center' }}
+          className="w-full p-2 mb-2.5 text-center border border-gray-800"
           required
         />
-        <button type="submit" style={{ padding: '10px 20px', background: '#000', color: '#fff' }}>
+        <button type="submit" className="px-5 py-2.5 bg-black text-white">
           {t('updatePassword')}
         </button>
       </form>

@@ -189,8 +189,13 @@ i18n
           // Product.jsx
           "addToCart": "ADD TO CART",
           "priceDetail": "The price is for a decorative replica at 1/200 scale.",
-          "freeQuote": "Contact us for a free quote."
-          
+          "freeQuote": "Contact us for a free quote.",
+
+          // ResetPassword.jsx
+          "resetPassword": "Reset Password",
+          "confirmPassword": "Confirm Password",
+          "newPassword": "New Password",
+
 
         },
       },
@@ -374,6 +379,12 @@ i18n
           "priceDetail": "Цената е за декоративна реплика с мащаб 1/200.",
           "freeQuote": "Свържете се с нас за безплатна оферта.",
           "addToCart": "Добавяне в количката",
+
+
+          // ResetPassword.jsx
+          "resetPassword": "Промяна",
+          "confirmPassword": "Потвърждаване на Паролата",
+          "newPassword": "Нова Парола",
 
         },
       },
