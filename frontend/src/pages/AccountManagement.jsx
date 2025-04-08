@@ -90,21 +90,20 @@ const AccountManagement = () => {
   };
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', maxWidth: '400px', margin: '50px auto' }}>
-      <h2>{t('myAccount')}</h2>
-      <div style={{ marginBottom: '20px', textAlign: 'center' }}>
+    <div style={{ display: 'flex', flexDirection: 'column', gap:'10px', alignItems: 'center', maxWidth: '400px', margin: '50px auto' }}>
+      <div style={{ display: 'flex', flexDirection: 'column', gap:'10px', marginBottom: '20px', textAlign: 'center' }}>
         <p><strong>{t('username')}:</strong> {user.name}</p>
         <p><strong>{t('email')}:</strong> {user.email}</p>
       </div>
 
-      <form onSubmit={handleEmailChange} style={{ width: '100%', marginBottom: '20px' }}>
-        <h3>{t('changeEmail')}</h3>
+      <form onSubmit={handleEmailChange} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: '100%', marginBottom: '20px' }}>
+        <h3 style={{ padding: '8px'}}>{t('changeEmail')}</h3>
         <input
           type="password"
           placeholder={t('currentPassword')}
           value={emailData.currentPassword}
           onChange={(e) => setEmailData({ ...emailData, currentPassword: e.target.value })}
-          style={{ width: '100%', padding: '8px', marginBottom: '10px' }}
+          style={{ width: '100%', padding: '8px', marginBottom: '10px', textAlign: 'center' }}
           required
         />
         <input
@@ -112,7 +111,7 @@ const AccountManagement = () => {
           placeholder={t('newEmail')}
           value={emailData.newEmail}
           onChange={(e) => setEmailData({ ...emailData, newEmail: e.target.value })}
-          style={{ width: '100%', padding: '8px', marginBottom: '10px' }}
+          style={{ width: '100%', padding: '8px', marginBottom: '10px', textAlign: 'center' }}
           required
         />
         <button type="submit" style={{ padding: '10px 20px', background: '#000', color: '#fff' }}>
@@ -120,14 +119,14 @@ const AccountManagement = () => {
         </button>
       </form>
 
-      <form onSubmit={handlePasswordChange} style={{ width: '100%' }}>
-        <h3>{t('changePassword')}</h3>
+      <form onSubmit={handlePasswordChange} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: '100%' }}>
+        <h3 style={{ padding: '8px'}}>{t('changePassword')}</h3>
         <input
           type="password"
           placeholder={t('currentPassword')}
           value={passwordData.currentPassword}
           onChange={(e) => setPasswordData({ ...passwordData, currentPassword: e.target.value })}
-          style={{ width: '100%', padding: '8px', marginBottom: '10px' }}
+          style={{ width: '100%', padding: '8px', marginBottom: '10px', textAlign: 'center' }}
           required
         />
         <input
@@ -135,7 +134,7 @@ const AccountManagement = () => {
           placeholder={t('newPassword')}
           value={passwordData.newPassword}
           onChange={(e) => setPasswordData({ ...passwordData, newPassword: e.target.value })}
-          style={{ width: '100%', padding: '8px', marginBottom: '10px' }}
+          style={{ width: '100%', padding: '8px', marginBottom: '10px', textAlign: 'center' }}
           required
         />
         <input
@@ -143,7 +142,7 @@ const AccountManagement = () => {
           placeholder={t('confirmNewPassword')}
           value={passwordData.confirmNewPassword}
           onChange={(e) => setPasswordData({ ...passwordData, confirmNewPassword: e.target.value })}
-          style={{ width: '100%', padding: '8px', marginBottom: '10px' }}
+          style={{ width: '100%', padding: '8px', marginBottom: '10px', textAlign: 'center' }}
           required
         />
         <button type="submit" style={{ padding: '10px 20px', background: '#000', color: '#fff' }}>

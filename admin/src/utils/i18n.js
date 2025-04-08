@@ -52,7 +52,7 @@ i18n
             orders: "Orders",
             logout: "Logout",
             relatedCaps: "RELATED",
-            productsCaps: "PRODUCTS",
+            productsCaps: "",
             yourCaps: "YOUR",
             cartCaps: "CART",
             proceedToCheckoutCaps: "PROCEED TO CHECKOUT",
@@ -139,6 +139,7 @@ i18n
             method: "Method",
             Done: "Done", 
             Pending: "Pending",
+            "Delete Order": "Delete Order",
 
             //Login
             AdminPanel: "Admin Panel",
@@ -197,9 +198,9 @@ i18n
             contactCaps: "КОНТАКТИ",
             myProfile: "Моят профил",
             orders: "Поръчки",
-            logout: "Излизане от акаунта",
-            relatedCaps: "СХОДНИ",
-            productsCaps: "ПРОДУКТИ",
+            logout: "Изход",
+            relatedCaps: "ПОДОБНИ",
+            productsCaps: "",
             yourCaps: "ВАШАТА",
             cartCaps: "КОЛИЧКА",
             proceedToCheckoutCaps: "Продължете към поръчка",
@@ -286,6 +287,8 @@ i18n
             method: "Метод",
             Done: "Готово", 
             Pending: "Очаква се",
+            "Delete Order": "Изтриване",
+
 
             //Login
             AdminPanel: "Вход за администратори",

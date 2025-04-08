@@ -25,7 +25,7 @@ const ResetPassword = () => {
       });
       if (response.data.success) {
         toast.success('Password reset successfully');
-        navigate('/login'); // Redirect to login page
+        navigate('/login');
       } else {
         toast.error(response.data.message);
       }
@@ -38,7 +38,7 @@ const ResetPassword = () => {
   return (
     <div className='flex flex-col items-center w-[90%] sm:max-w-96 m-auto mt-14 gap-4 text-gray-800'>
       <h2>Reset Password</h2>
-      <form onSubmit={handleSubmit}>
+      <form className='flex flex-col align-items-center' onSubmit={handleSubmit}>
         <input
           type="password"
           value={password}

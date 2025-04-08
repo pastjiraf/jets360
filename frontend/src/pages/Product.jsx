@@ -1,4 +1,5 @@
 import React, { useContext, useState, useEffect } from 'react'
+import BestSeller from '../components/BestSeller'
 import { useParams } from 'react-router-dom'
 import { ShopContext } from '../context/ShopContext';
 import RelatedProducts from '../components/RelatedProducts';
@@ -54,7 +55,7 @@ const Product = () => {
           <h1 className='font-medium text-2xl mt-2' >{productData.name}</h1>
 
           <p className='mt-5 text-3xl font-medium'>{currency}{productData.price}</p>
-          <div className="product-description" dangerouslySetInnerHTML={{ __html: productData.description }} />
+          {/* <div className="product-description" dangerouslySetInnerHTML={{ __html: productData.description }} /> */}
 
           {/* -------------- Display Contact Form ----------- */}
           <OfferButton />
@@ -65,14 +66,21 @@ const Product = () => {
             <p> {t('priceDetail')} </p>
             <p> {t('freeQuote')} </p>
           </div>
+          <hr className='mt-8 sm:w-4/5' />
         </div>
       </div>
+
+      <div
+        className="product-description columns-1 md:columns-2 gap-4"
+        dangerouslySetInnerHTML={{ __html: productData.description }}
+      />
+
 
       <div className='mt-10'>
       </div>
 
       {/* -------------- Display Related Products ----------- */}
-      <RelatedProducts category={productData.category} subCategory={productData.subCategory} />
+      <RelatedProducts category={productData.category} selectedProductId={productData._id} />
 
 
     </div>

@@ -93,7 +93,6 @@ const placeOrderStripe = async (req,res) => {
         console.log(error)
         res.json({success:false, message:error.message})
     }
-
 }
 
 // Verify Stripe
@@ -118,9 +117,7 @@ const verifyStripe = async (req,res) => {
 
 // All orders data for Admin Panel
 const allOrders = async (req,res) => {
-
     try {
-        
         const orders = await orderModel.find({})
         res.json({ success:true, orders })
 
@@ -128,7 +125,6 @@ const allOrders = async (req,res) => {
         console.log(error)
         res.json({success:false, message:error.message})
     }
-
 }
 
 // User order data for frontend
@@ -161,7 +157,18 @@ const updateStatus = async (req,res) => {
         console.log(error)
         res.json({success:false, message:error.message})
     }
-
 }
 
-export { verifyStripe, placeOrder, placeOrderStripe, placeOrderRazorpay, allOrders, userOrders, updateStatus }
+// Изтриване на поръчка (Admin Panel)
+const deleteOrder = async (req, res) => {
+    try {
+      const { orderId } = req.body;
+      await orderModel.findByIdAndDelete(orderId);
+      res.json({ success: true, message: "Order deleted" });
+    } catch (error) {
+      console.log(error);
+      res.json({ success: false, message: error.message });
+    }
+  };  
+
+export { verifyStripe, placeOrder, placeOrderStripe, allOrders, userOrders, updateStatus, deleteOrder }

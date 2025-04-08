@@ -13,7 +13,7 @@ const LanguageSelector = () => {
   return (
     <button
       onClick={switchLanguage}
-      className="bg-gray-200 px-2 py-1 rounded hover:bg-gray-300 transition"
+      className="w-12 bg-gray-200 px-2 py-1 rounded hover:bg-gray-300 transition"
     >
       {i18n.language === 'en' ? 'EN' : 'BG'}
     </button>
