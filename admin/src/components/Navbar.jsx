@@ -1,7 +1,7 @@
 import React from 'react'
 import { assets } from '../assets/assets'
 import { useTranslation } from 'react-i18next';
-import LanguageSelector from '../../../frontend/src/components/LanguageSelector';
+import LanguageSelector from './LanguageSelector';
 
 
 const Navbar = ({ setToken }) => {
