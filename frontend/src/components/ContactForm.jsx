@@ -1,9 +1,11 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import axios from 'axios';
 import { useTranslation } from 'react-i18next';
+import { ShopContext } from '../context/ShopContext';
 
 const ContactForm = () => {
   const { t } = useTranslation();
+  const {backendUrl} = useContext(ShopContext);
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
@@ -13,7 +15,7 @@ const ContactForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('/api/user/send-email', { name, email, phone, message });
+      const response = await axios.post(backendUrl + '/api/user/send-email', { name, email, phone, message });
       if (response.status === 200) {
         setStatus(t('email_sent_success'));
         setName('');
