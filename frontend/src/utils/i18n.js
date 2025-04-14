@@ -196,6 +196,8 @@ i18n
           "confirmPassword": "Confirm Password",
           "newPassword": "New Password",
 
+          //Product.jsx
+          "productAddedToCart": "Product added to cart",
 
         },
       },
@@ -386,6 +388,8 @@ i18n
           "confirmPassword": "Потвърждаване на Паролата",
           "newPassword": "Нова Парола",
 
+          //Product.jsx
+          "productAddedToCart": "Добавено в количката",
         },
       },
     },

@@ -6,6 +6,8 @@ import RelatedProducts from '../components/RelatedProducts';
 import OfferButton from '../components/OfferButton';
 import { useTranslation } from 'react-i18next';
 
+import { toast } from 'react-toastify';
+
 const Product = () => {
 
   const { productId } = useParams();
@@ -55,11 +57,21 @@ const Product = () => {
           <h1 className='font-medium text-2xl mt-2' >{productData.name}</h1>
 
           <p className='mt-5 text-3xl font-medium'>{currency}{productData.price}</p>
-          {/* <div className="product-description" dangerouslySetInnerHTML={{ __html: productData.description }} /> */}
 
           {/* -------------- Display Contact Form ----------- */}
           <OfferButton />
-          <button onClick={() => addToCart(productData._id, size)} className='mt-8 bg-black text-white px-8 py-3 text-sm active:bg-gray-700'>{t('addToCart')}</button>
+
+          <button
+            onClick={async () => {
+              await addToCart(productData._id, size);
+              toast.success(t('productAddedToCart'));
+            }}
+            className='mt-8 bg-black text-white px-8 py-3 text-sm active:bg-gray-700'
+          >
+            {t('addToCart')}
+          </button>
+
+
 
           <hr className='mt-8 sm:w-4/5' />
           <div className='text-sm text-gray-500 mt-5 flex flex-col gap-1'>
