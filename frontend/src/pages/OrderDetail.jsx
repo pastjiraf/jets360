@@ -33,14 +33,12 @@ const OrderDetail = () => {
           <div className="flex items-center gap-3 mt-2">
             <p>{t('Price')}: {order.price}</p>
             <p>{t('Quantity')}: {order.quantity}</p>
-            <p>{t('Size')}: {order.size}</p>
           </div>
           <p className="mt-2">{t('Date')}: {new Date(order.date).toDateString()}</p>
           <p className="mt-2">
             {t('Payment')}: {order.paymentMethod === 'COD' ? t('COD') : order.paymentMethod}
           </p>
           <p className="mt-2">{t('Status')}: {t(order.status)}</p>
-          {/* You can add more order details here if needed */}
         </div>
       </div>
       <button
