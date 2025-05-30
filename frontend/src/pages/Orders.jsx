@@ -55,7 +55,7 @@ const Orders = () => {
   return (
     <div className='border-t pt-16' >
       <div className='text-2xl'>
-        <Title text1={'MY'} text2={'ORDERS'} />
+        <Title text1={t('MY')} text2={t('ORDERS')} />
       </div>
 
       <div>
@@ -69,7 +69,6 @@ const Orders = () => {
                   <div className='flex items-center gap-3 mt-2 text-base text-gray-700'>
                     <p>{currency}{item.price}</p>
                     <p>{t('Quantity')}: {item.quantity}</p>
-                    {/* <p>{t('Size')}: {item.size}</p> */}
                   </div>
                   <p className='mt-1'>{t('Date')}: <span className='text-gray-400'>{new Date(item.date).toDateString()}</span></p>
                   <p className='mt-1'>{t('Payment')}: <span className='text-gray-400'> {item.paymentMethod === 'COD' ? t('COD') : item.paymentMethod}</span></p>
