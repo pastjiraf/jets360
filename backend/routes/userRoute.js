@@ -13,8 +13,8 @@ userRouter.post('/admin', adminLogin)
 
 
 // forgotten password
-userRouter.post('/forgot-password', forgotPassword); // New endpoint
-userRouter.post('/reset-password', resetPassword); // Add this line
+userRouter.post('/forgot-password', forgotPassword);
+userRouter.post('/reset-password', resetPassword);
 
 
 // upate account

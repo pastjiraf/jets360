@@ -2,7 +2,7 @@ import validator from "validator";
 import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
 import userModel from '../models/userModel.js';
-import crypto from 'crypto'; // secure token generation
+import crypto from 'crypto';
 import nodemailer from 'nodemailer';
 import i18n from '../i18n.js'
 
@@ -197,7 +197,7 @@ const forgotPassword = async (req, res) => {
 
         const userLocale = language || 'bg';
         i18n.setLocale(userLocale);
-        const resetUrl = `${process.env.FRONTEND_URL}/reset-password/${resetToken}`; // Updated URL
+        const resetUrl = `${process.env.FRONTEND_URL}/reset-password/${resetToken}`;
         const mailOptions = {
             from: process.env.EMAIL_USER,
             to: user.email,subject: i18n.__('authReset.subject'),

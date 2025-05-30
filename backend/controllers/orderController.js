@@ -64,7 +64,7 @@ const placeOrderStripe = async (req,res) => {
                 product_data: {
                     name: item.name,
                 },
-                unit_amount: item.price * 100, // price in cents
+                unit_amount: item.price * 100, // cents
             },
             quantity: item.quantity
         }))
@@ -75,7 +75,7 @@ const placeOrderStripe = async (req,res) => {
                 product_data: {
                     name: 'Delivery Charges',
                 },
-                unit_amount: deliveryCharge * 100, // in cents
+                unit_amount: deliveryCharge * 100, // cents
             },
             quantity: 1
         })
