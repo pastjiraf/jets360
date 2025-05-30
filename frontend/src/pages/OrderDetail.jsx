@@ -38,7 +38,7 @@ const OrderDetail = () => {
           <p className="mt-2">
             {t('Payment')}: {order.paymentMethod === 'COD' ? t('COD') : order.paymentMethod}
           </p>
-          <p className="mt-2">{t('Status')}: {t(order.status)}</p>
+          <p className="mt-2">{t('Status')}: {t(order.status)}</p> 
         </div>
       </div>
       <button
